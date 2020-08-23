@@ -1,1 +1,3 @@
-# acoustic-study-galician-portuguese-brazilian
+# An acoustic study on the vowels of three Galician-Portuguese varieties
+
+This work analyzes the acoustic dissimilarities between Galician, European Portuguese and Brazilian Portuguese: three different varieties of the Galician-Portuguese language. The study focuses on vowel inventories, which are captured thanks to the recordings carried out by  three native speakers. Vowels are manually tagged and then measured in terms of lengths and formants frequencies using the tool \texttt{praat} in an automatic fashion. The formant and duration analysis suggests that Galician and Brazilian Portuguese might be acoustically closer to each other than to European Portuguese, even though they themselves have never been into direct contact.
