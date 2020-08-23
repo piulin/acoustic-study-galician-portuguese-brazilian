@@ -1,0 +1,168 @@
+\begin{figure}[htpb]
+    \centering
+\noindent
+\begin{tikzpicture}
+\pgfplotstableread[col sep = comma]{data/pedro/p1.boxplot.csv}\datatablepedro
+\pgfplotstableread[col sep = comma]{data/julio/p1.boxplot.csv}\datatablejulio
+\pgfplotstableread[col sep = comma]{data/joao/p1.boxplot.csv}\datatablejoao
+\begin{axis}[
+title=Singular reading list,
+ymin=0.02,
+ymax=0.18,
+ymajorgrids,
+ylabel=Length (s),
+xlabel=Phone,
+y tick label style={
+    /pgf/number format/fixed,
+},
+typeset ticklabels with strut,
+legend entries = {Galician, Brazilian Portuguese, European Portuguese},
+legend to name={legend},
+name=border,
+legend columns=3,
+legend style={/tikz/every even column/.append style={column sep=0.3cm}},
+height=10cm,
+width=\textwidth,
+boxplot/draw direction=y,
+xtick = {1, 2, 3, 4,5,6,7,8,9},
+xticklabel style = {align=center},
+xticklabels = {\textipa{/5/},\textipa{/E/},\textipa{/I/},\textipa{/O/},\textipa{/U/},\textipa{/a/},\textipa{/e/},\textipa{/i/},\textipa{/o/},\textipa{/u/}},
+boxplot={
+    %
+    % Idea: 
+    %  place the 
+    %  group 1 at 0.3333 and 0.6666
+    %  group 2 at 1.3333 and 1.6666
+    %  group 3 at 2.3333 and 2.6666
+    %  ...
+    % in a formular:
+    draw position={0.78 + floor(\plotnumofactualtype/3) + 1/4.5*fpumod(\plotnumofactualtype,3)},
+    %
+    % that means the box extend must be at most 0.33333 :
+    box extend=0.2,
+},
+% ... it also means that 1 unit in x controls the width:
+%x=2cm,
+%xtick style = {draw=none}, % Hide tick line
+cycle list name=full,
+]
+
+%\addplot+ [boxplot] table [y index=1,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=2,col sep=comma] {\datatable};
+
+\foreach \i in {1,...,9} {
+\addplot+ [boxplot,fill=blue!10!white] table [y index=\i,col sep=comma] {\datatablepedro};
+\addplot+ [boxplot,fill= red!10!white] table [y index=\i,col sep=comma] {\datatablejulio};
+\addplot+ [boxplot,fill= black!10!white] table [y index=\i,col sep=comma] {\datatablejoao};
+%\pgfplotsset{cycle list shift=-3}
+}
+
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+
+%\foreach \i in {1,...,4} {
+%    % draw each originally row, now column as boxplot
+%    \addplot+ [boxplot] table [y index=\i] {\mytable};
+%}
+%\legend{Galician,BP,EP}
+\end{axis}
+\node[below] at ([yshift=-1.4cm]border.south) {\ref{legend}};
+\end{tikzpicture}
+\\[1em]
+\noindent
+\begin{tikzpicture}
+\pgfplotstableread[col sep = comma]{data/pedro/p2.boxplot.csv}\datatablepedro
+\pgfplotstableread[col sep = comma]{data/julio/p2.boxplot.csv}\datatablejulio
+\pgfplotstableread[col sep = comma]{data/joao/p2.boxplot.csv}\datatablejoao
+\begin{axis}[
+title=Plural reading list,
+ymin=0.02,
+ymax=0.18,
+ymajorgrids,
+ylabel=Length (s),
+xlabel=Phone,
+y tick label style={
+    /pgf/number format/fixed,
+},
+typeset ticklabels with strut,
+legend entries = {Galician, Brazilian Portuguese, European Portuguese},
+legend to name={legend},
+name=border,
+legend columns=3,
+legend style={/tikz/every even column/.append style={column sep=0.3cm}},
+height=10cm,
+width=\textwidth,
+boxplot/draw direction=y,
+xtick = {1, 2, 3, 4,5,6,7,8,9},
+xticklabel style = {align=center},
+xticklabels = {\textipa{/5/},\textipa{/E/},\textipa{/I/},\textipa{/O/},\textipa{/U/},\textipa{/a/},\textipa{/e/},\textipa{/i/},\textipa{/o/},\textipa{/u/}},
+boxplot={
+    %
+    % Idea: 
+    %  place the 
+    %  group 1 at 0.3333 and 0.6666
+    %  group 2 at 1.3333 and 1.6666
+    %  group 3 at 2.3333 and 2.6666
+    %  ...
+    % in a formular:
+    draw position={0.78 + floor(\plotnumofactualtype/3) + 1/4.5*fpumod(\plotnumofactualtype,3)},
+    %
+    % that means the box extend must be at most 0.33333 :
+    box extend=0.2,
+},
+% ... it also means that 1 unit in x controls the width:
+%x=2cm,
+%xtick style = {draw=none}, % Hide tick line
+cycle list name=full,
+]
+
+%\addplot+ [boxplot] table [y index=1,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=2,col sep=comma] {\datatable};
+
+\foreach \i in {1,...,9} {
+    \addplot+ [boxplot,fill=blue!10!white] table [y index=\i,col sep=comma] {\datatablepedro};
+    \addplot+ [boxplot,fill= red!10!white] table [y index=\i,col sep=comma] {\datatablejulio};
+    \addplot+ [boxplot,fill= black!10!white] table [y index=\i,col sep=comma] {\datatablejoao};
+    %\pgfplotsset{cycle list shift=-3}
+}
+
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+%\addplot+ [boxplot] table [y index=7,col sep=comma] {\datatable};
+
+%\foreach \i in {1,...,4} {
+%    % draw each originally row, now column as boxplot
+%    \addplot+ [boxplot] table [y index=\i] {\mytable};
+%}
+%\legend{Galician,BP,EP}
+\end{axis}
+\node[below] at ([yshift=-1.4cm]border.south) {\ref{legend}};
+\end{tikzpicture}
+
+\caption{Vowel lengths as pronounced by the Galician, BP and EP participants.}
+\label{fig:times}
+\end{figure}
+
+
+
+
+%
+%    \begin{tikzpicture}
+%\begin{axis}[
+%ybar,
+%xtick=data,
+%xmin=0.5,
+%xmax=3.5,
+%ymajorgrids=true,
+%bar width=1cm, 
+%xlabel={something else},
+%xlabel style={yshift=-1cm},
+%xtick align=inside,
+%xticklabels={one bar, another bar , third bar},
+%ylabel={something},
+%x tick label style={font=\normalsize, rotate=45, anchor=east}
+%]
+%\addplot table [x index=0,y index=1, col sep=comma] {..data.txt};
+%\end{axis}
+%\end{tikzpicture}

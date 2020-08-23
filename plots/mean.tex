@@ -1,0 +1,166 @@
+%\begin{tikzpicture}
+%\begin{axis}[
+%ylabel=F1 (Hz),
+%xlabel=F2 (Hz),
+%ymode=log,
+%log basis y={2},
+%x dir=reverse,
+%y dir=reverse,
+%xmin=850,
+%xmax=2100,
+%ymin=250,
+%ymax=750,
+%extra y tick style={%
+%    fill=white,
+%    label=none,
+%    draw=none,
+%    tickwidth=0.8mm,
+%    fill opacity=0,
+%},
+%ytick={200,300,500,800},
+%extra y ticks={200,210,...,850},
+%yminorticks=true,
+%log ticks with fixed point,
+%]
+%
+%\addplot [
+%point meta=explicit symbolic,
+%scatter, only marks,
+%mark=text,
+%scatter/@pre marker code/.code={\pgfplotsset{text mark=\colorbox{white}{\textipa{\pgfplotspointmeta}}}},
+%scatter/@post marker code/.code={}
+%] table [x=F2, 
+%y=F1, 
+%col sep=comma,
+%meta=phoneme] {data/pedro/p1.mean.summary.csv};
+%
+%\addplot [
+%black,
+%] table [x=F2, 
+%y=F1, 
+%col sep=comma,
+%meta=phoneme] {data/pedro/p1.mean.summary_7.csv};
+%
+%
+%\end{axis}
+%
+%\end{tikzpicture}
+\begin{figure}[htpb]
+\noindent
+\begin{tikzpicture}
+\begin{axis}[
+width=\textwidth,
+height=10cm,
+ylabel=F1 (Hz),
+xlabel=F2 (Hz),
+xmode=log,
+ymode=log,
+log basis y={2},
+x dir=reverse,
+y dir=reverse,
+xmin=650,
+xmax=2300,
+ymin=250,
+ymax=850,
+extra y tick style={%
+    fill=white,
+    label=none,
+    draw=none,
+    tickwidth=0.8mm,
+    fill opacity=0,
+},
+extra x tick style={%
+    fill=white,
+    label=none,
+    draw=none,
+    tickwidth=0.8mm,
+    fill opacity=0,
+},
+ytick={200,300,500,800},
+extra y ticks={200,210,...,850},
+xtick={650,900,1200,1700, 2300},
+extra x ticks={650,700,...,2500},
+yminorticks=true,
+log ticks with fixed point,
+legend entries = {Galician, Brazilian Portuguese, European Portuguese},
+legend to name={legend},
+legend columns=3,
+legend style={/tikz/every even column/.append style={column sep=0.3cm}},
+name=border,
+]
+
+\addlegendimage{blue,densely dashed,mark=text, text mark=\colorbox{white}{\makebox[0.0em]{\textipa{O}}}}
+\addlegendimage{red,mark=text, text mark=\colorbox{white}{\makebox[0.0em]{\textipa{O}}}}
+\addlegendimage{n11,densely dotted,
+    thick,mark=text, text mark=\colorbox{white}{\makebox[0.0em]{\textipa{O}}}}
+
+\addplot [
+blue!70!black,
+point meta=explicit symbolic,
+scatter, only marks,
+mark=text,
+scatter/@pre marker code/.code={\pgfplotsset{text mark=\colorbox{white}{\makebox[0.0em]{\textipa{\pgfplotspointmeta}}}}},
+scatter/@post marker code/.code={}
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/pedro/p1.mean.summary.csv};
+
+\addplot [
+blue, densely dashed,
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/pedro/p1.mean.summary_7.csv};
+
+\addplot [
+red!70!black,
+point meta=explicit symbolic,
+scatter, only marks,
+mark=text,
+scatter/@pre marker code/.code={\pgfplotsset{text mark=\colorbox{white}{\makebox[0.0em]{\textipa{\pgfplotspointmeta}}}}},
+scatter/@post marker code/.code={}
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/julio/p1.mean.summary.csv};
+
+\addplot [
+red,
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/julio/p1.mean.summary_7.csv};
+
+
+\addplot [
+n11!70!black,
+point meta=explicit symbolic,
+scatter, only marks,
+mark=text,
+scatter/@pre marker code/.code={\pgfplotsset{text mark=\colorbox{white}{\makebox[0.0em]{\textipa{\pgfplotspointmeta}}}}},
+scatter/@post marker code/.code={}
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/joao/p1.mean.summary.csv};
+
+\addplot [
+densely dotted,
+thick,
+n11,
+] table [x=F2, 
+y=F1, 
+col sep=comma,
+meta=phoneme] {data/joao/p1.mean.summary_7.csv};
+
+\legend{Galician,Brazilian Portuguese,European Portuguese}
+
+\end{axis}
+
+\node[below] at ([yshift=-1.4cm]border.south) {\ref{legend}};
+
+\end{tikzpicture}
+\caption{Mean values of the first and second formants as realized by each speaker.}
+\label{fig:mean}
+\end{figure}
